@@ -13,6 +13,5 @@ public:
 	~CArregloBalas();
 	void agregarElemento(int x, int y, int dir);
 	void moverBalas(BufferedGraphics ^buffer, Bitmap ^bmp);
-	void eleminiarElemento();
 };
 

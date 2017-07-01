@@ -22,18 +22,25 @@ void CArregloBalas::agregarElemento(int x, int y, int dir) {
 	arreglo = aux;
 	cap++;
 }
+
 void CArregloBalas::moverBalas(BufferedGraphics ^buffer, Bitmap ^bmp) {
 	for (int i = 0; i < cap; i++)
 	{
 		arreglo[i]->mover(buffer, bmp);
-	}
-}
-void CArregloBalas::eleminiarElemento() {
-	for (int i = 0; i < cap; i++)
-	{
-		if (arreglo[i]->getX() < 10 || arreglo[i]->getX() > 400)
+		if (arreglo[i]->getX() < 0 || arreglo[i]->getX() > 1583)
 		{
-			arreglo[i]->setX(100);
+			CBala **aux = new CBala *[cap - 1];
+			int a = 0;
+			for (int j = 0; j < cap - 1; j++)
+			{
+				aux[j] = arreglo[a];
+				a++;
+				if (j == i)
+					a++;
+			}
+			delete[] arreglo;
+			arreglo = aux;
+			cap--;
 		}
 	}
 }
