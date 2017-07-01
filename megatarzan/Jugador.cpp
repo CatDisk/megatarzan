@@ -28,44 +28,44 @@ void	CJugador::mover(BufferedGraphics ^buffer, Bitmap ^bmp) {
 	case dirs::down:
 		break;
 	case dirs::up:
-		if (piso)
-		{
-			piso = false;
-			dy = -40;
-			ultima = up;
-		}
 		break;
 	case dirs::right:
 		indiceY = 0;
-		if (indiceX > 0 && indiceX < 10)
-			indiceX++;
-		else
-			indiceX = 1;
-		if (x >= 620)
+		if (piso) // solamente si esta sobre el piso camina
 		{
-			dx = 0;
-			x = 620;
-		}
-		else
-		{
-			dx = 10;
+			if (indiceX > 0 && indiceX < 10) // loop para caminar
+				indiceX++;
+			else
+				indiceX = 1;
+			if (x >= 620) // limite de la pantalla
+			{
+				dx = 0;
+				x = 620;
+			}
+			else
+			{
+				dx = 10; // velociadad del jugador
+			}
 		}
 		ultima = right;
 		break;
 	case dirs::left:
 		indiceY = 1;
-		if (indiceX > 0 && indiceX < 10)
-			indiceX++;
-		else
-			indiceX = 1;
-		if (x <= 70)
+		if (piso) // solamente si esta sobre el piso camina
 		{
-			dx = 0;
-			x = 70;
-		}
-		else
-		{
-			dx = -10;
+			if (indiceX > 0 && indiceX < 10)
+				indiceX++;
+			else
+				indiceX = 1;
+			if (x <= 70)
+			{
+				dx = 0;
+				x = 70;
+			}
+			else
+			{
+				dx = -10;
+			}
 		}
 		ultima = left;
 		break;
@@ -95,17 +95,52 @@ void	CJugador::mover(BufferedGraphics ^buffer, Bitmap ^bmp) {
 		break;
 	}
 
-	if (piso)
+	if (piso) // variable que cancela la velocidad en y
 	{
 		dy = 0;
 		y = 472;
 	}
 	else
-		dy += 4;
+		dy += 4; // 'gravedad'
+
+	if (dy < 0) // animacion de salto para arriba
+	{
+		if (ultima == right)
+		{
+			indiceY = 2;
+		}
+		if (ultima == left)
+		{
+			indiceY = 3;
+		}
+
+		if (indiceX < 4)
+			indiceX++;
+	}
+	if (dy >= 0 && !piso) // sprite de caida
+	{
+		if (ultima == right)
+		{
+			indiceY = 2;
+		}
+		if (ultima == left)
+		{
+			indiceY = 3;
+		}
+		indiceX = 5;
+	}
 	dibujar(buffer, bmp);
 	if (y >= 472)
 	{
 		piso = true;
+	}
+}
+void CJugador::saltar() // funcion separada para que no interfiera con el movimiento en X
+{
+	if (piso)
+	{
+		piso = false;
+		dy = -40;
 	}
 }
 int CJugador::getX() { return x; }

@@ -90,7 +90,7 @@ namespace megatarzan {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(1181, 683);
+			this->ClientSize = System::Drawing::Size(1567, 683);
 			this->Name = L"MyForm";
 			this->Text = L"MyForm";
 			this->KeyDown += gcnew System::Windows::Forms::KeyEventHandler(this, &MyForm::presionarTecla);
@@ -103,7 +103,7 @@ namespace megatarzan {
 		switch (e->KeyCode)
 		{
 		case Keys::Up:
-			jugador->direccion = dirs::up;
+			jugador->saltar();
 			break;
 		case Keys::Down:
 			jugador->direccion = dirs::down;

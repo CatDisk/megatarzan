@@ -20,6 +20,7 @@ public:
 	~CJugador();
 	void dibujar(BufferedGraphics ^buffer, Bitmap ^bmp);
 	void mover(BufferedGraphics ^buffer, Bitmap ^bmp);
+	void saltar();
 	int getX();
 	int getY();
 	int getAncho();
