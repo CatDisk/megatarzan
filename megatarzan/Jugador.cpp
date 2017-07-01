@@ -37,10 +37,10 @@ void	CJugador::mover(BufferedGraphics ^buffer, Bitmap ^bmp) {
 				indiceX++;
 			else
 				indiceX = 1;
-			if (x >= 620) // limite de la pantalla
+			if (x >= 1200) // limite de la pantalla
 			{
 				dx = 0;
-				x = 620;
+				x = 1200;
 			}
 			else
 			{
@@ -114,7 +114,7 @@ void	CJugador::mover(BufferedGraphics ^buffer, Bitmap ^bmp) {
 			indiceY = 3;
 		}
 
-		if (indiceX < 4)
+		if (indiceX < 5)
 			indiceX++;
 	}
 	if (dy >= 0 && !piso) // sprite de caida

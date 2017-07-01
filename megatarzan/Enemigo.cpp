@@ -10,7 +10,8 @@ CEnemigo::CEnemigo(int x, int y)
 CEnemigo::~CEnemigo()
 {
 }
-void CEnemigo::idleIZQ() {
+void CEnemigo::idleIZQ() // animacion de espera
+{
 	indiceY = 0;
 	if (i == 1)
 	{
@@ -23,7 +24,8 @@ void CEnemigo::idleIZQ() {
 	else
 		i++;
 }
-void CEnemigo::saltarIZQ() {
+void CEnemigo::saltarIZQ() // animacion de salto + cambio en dx y dy
+{
 	indiceY = 2;
 	if (indiceX > 2)
 	{
@@ -43,7 +45,8 @@ void CEnemigo::saltarIZQ() {
 	else
 		indiceX++;
 }
-void CEnemigo::ataqueIZQ(CArregloBalas *oArreglo) {
+void CEnemigo::ataqueIZQ(CArregloBalas *oArreglo) // animacion de ataque y creacion de un nuevo objeto CBala (en el penultimo fame para que aparezca en el ultimo frame)
+{
 	indiceY = 4;
 	if (i == 1)
 	{
@@ -113,7 +116,7 @@ void CEnemigo::ataqueDER(CArregloBalas *oArreglo) {
 
 void CEnemigo::mover(BufferedGraphics ^buffer, Bitmap ^bmp, CArregloBalas *oArreglo, CStage *oPlataforma)
 {
-	if (contador < 20)
+	if (contador < 20) // el contador va de 0 a 80 y determina cuanto tiempo tarda que estado
 	{
 		if (contador == 19)
 			indiceX = 0;
@@ -131,7 +134,7 @@ void CEnemigo::mover(BufferedGraphics ^buffer, Bitmap ^bmp, CArregloBalas *oArre
 		idleDER();
 		contador++;
 	}
-	else if (contador == 40)
+	else if (contador == 40) // el tiempo de salto es determinado por el tiempo que le toma regresar a yStart (el contador para por ese tiempo)
 	{
 		saltarIZQ();
 	}
