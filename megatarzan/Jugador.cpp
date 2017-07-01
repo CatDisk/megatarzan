@@ -37,10 +37,10 @@ void	CJugador::mover(BufferedGraphics ^buffer, Bitmap ^bmp) {
 				indiceX++;
 			else
 				indiceX = 1;
-			if (x >= 1200) // limite de la pantalla
+			if (x >= 800) // limite de la pantalla
 			{
 				dx = 0;
-				x = 1200;
+				x = 800;
 			}
 			else
 			{

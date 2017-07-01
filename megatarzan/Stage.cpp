@@ -32,7 +32,7 @@ void CStage::mover(BufferedGraphics ^buffer, Bitmap ^bmp, int pos, int dxJugador
 	}
 	else
 		dx = 0;
-	if (pos == 1200)
+	if (pos == 800)
 	{
 		if (dx != -dxInicial)
 			dx = -dxInicial;
