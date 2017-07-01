@@ -15,7 +15,7 @@ void CEnemigo::idleIZQ() // animacion de espera
 	indiceY = 0;
 	if (i == 1)
 	{
-		if (indiceX > 2)
+		if (indiceX > 3)
 			indiceX = 0;
 		else
 			indiceX++;
@@ -67,7 +67,7 @@ void CEnemigo::idleDER() {
 	indiceY = 1;
 	if (i == 1)
 	{
-		if (indiceX > 2)
+		if (indiceX > 3)
 			indiceX = 0;
 		else
 			indiceX++;
