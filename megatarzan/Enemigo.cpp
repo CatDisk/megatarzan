@@ -50,7 +50,7 @@ void CEnemigo::ataqueIZQ(CArregloBalas *oArreglo) // animacion de ataque y creac
 	indiceY = 4;
 	if (i == 1)
 	{
-		if (indiceX < 3)
+		if (indiceX < 4)
 			indiceX++;
 		else
 		{
@@ -100,7 +100,7 @@ void CEnemigo::ataqueDER(CArregloBalas *oArreglo) {
 	indiceY = 5;
 	if (i == 1)
 	{
-		if (indiceX < 3)
+		if (indiceX < 4)
 			indiceX++;
 		else
 		{

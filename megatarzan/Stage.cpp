@@ -25,24 +25,22 @@ void CStage::mover(BufferedGraphics ^buffer, Bitmap ^bmp, int pos, int dxJugador
 	if (dxJugador < 0)
 		x += 1;
 
-	if (pos == 70)
+	if (pos == 600 && dxJugador <= 0)
 	{
-		if (dx != dxInicial)
 			dx = dxInicial;
 	}
-	else
-		dx = 0;
-	if (pos == 800)
+	else if (pos == 800 && dxJugador >= 0)
 	{
-		if (dx != -dxInicial)
 			dx = -dxInicial;
 	}
 	else
 		dx = 0;
+	
 	if (x <= -ancho * 2)
 		x = otherStageX + (ancho * 2);
 	if (x >= ancho * 2)
 		x = otherStageX - (ancho * 2);
+		
 	x += dx;
 	dibujar(buffer, bmp);
 }

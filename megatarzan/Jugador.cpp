@@ -57,10 +57,10 @@ void	CJugador::mover(BufferedGraphics ^buffer, Bitmap ^bmp) {
 				indiceX++;
 			else
 				indiceX = 1;
-			if (x <= 70)
+			if (x <= 600)
 			{
 				dx = 0;
-				x = 70;
+				x = 600;
 			}
 			else
 			{
@@ -76,13 +76,13 @@ void	CJugador::mover(BufferedGraphics ^buffer, Bitmap ^bmp) {
 		case down:
 			break;
 		case left:
-			if (x == 70)
+			if (x == 600)
 				x++;
 			indiceX = 0;
 			indiceY = 1;
 			break;
 		case right:
-			if (x == 620)
+			if (x == 800)
 				x--;
 			indiceX = 0;
 			indiceY = 0;
