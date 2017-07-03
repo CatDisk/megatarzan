@@ -137,6 +137,7 @@
     <ClCompile Include="Colision.cpp" />
     <ClCompile Include="Enemigo.cpp" />
     <ClCompile Include="Jugador.cpp" />
+    <ClCompile Include="Liana.cpp" />
     <ClCompile Include="MyForm.cpp" />
     <ClCompile Include="Stage.cpp" />
   </ItemGroup>
@@ -146,6 +147,7 @@
     <ClInclude Include="Colision.h" />
     <ClInclude Include="Enemigo.h" />
     <ClInclude Include="Jugador.h" />
+    <ClInclude Include="Liana.h" />
     <ClInclude Include="MyForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -162,7 +164,6 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="bala.bmp" />
-    <Image Include="collider_bosque.bmp" />
     <Image Include="enemigo.bmp" />
     <Image Include="fondo.bmp" />
     <Image Include="fondo_bosque.bmp" />

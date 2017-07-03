@@ -20,18 +20,23 @@ namespace megatarzan {
 	public ref class MyForm : public System::Windows::Forms::Form
 	{
 	public:
+		int nivelactual = 1;
 		CColision *colision;
 		CJugador *jugador;
 		CEnemigo *enemigo;
-		CStage *fondo1;
-		CStage *plataforma1;
+		CStage *fondoMina;
+		CStage *plataformaMina;
+		CStage *fondoBosque;
+		CStage *plataformaBosque;
 		CArregloBalas *oArregloBalas;
 
 		Bitmap ^bmpJugador = gcnew Bitmap("megaman.bmp");
-		Bitmap ^bmpFondo = gcnew Bitmap("fondo_mina.bmp");
-		Bitmap ^bmpPlataforma = gcnew Bitmap("plataforma_mina.bmp");
+		Bitmap ^bmpFondoMina = gcnew Bitmap("fondo_mina.bmp");
+		Bitmap ^bmpPlataformaMina = gcnew Bitmap("plataforma_mina.bmp");
 		Bitmap ^bmpBala = gcnew Bitmap("bala.bmp");
 		Bitmap ^bmpEnemigo = gcnew Bitmap("enemigo.bmp");
+		Bitmap ^bmpPlataformaBosque = gcnew Bitmap("plataforma_bosque.bmp");
+		Bitmap ^bmpFondoBosque = gcnew Bitmap("fondo_bosque.bmp");
 
 		MyForm(void)
 		{
@@ -41,9 +46,15 @@ namespace megatarzan {
 			bmpJugador->MakeTransparent(bmpJugador->GetPixel(0, 0));
 			enemigo = new CEnemigo(1000, 404);
 			bmpEnemigo->MakeTransparent(bmpEnemigo->GetPixel(0, 0));
-			fondo1 = new CStage(0, 250, 256, 1792, 5);
-			plataforma1 = new CStage(0, 0, 353, 1792, 10);
-			bmpPlataforma->MakeTransparent(bmpPlataforma->GetPixel(0, 0));
+
+			fondoMina = new CStage(0, 250, 256, 1792, 5);
+			plataformaMina = new CStage(0, 0, 353, 1792, 10);
+			bmpPlataformaMina->MakeTransparent(bmpPlataformaMina->GetPixel(0, 0));
+
+			fondoBosque = new CStage(0, 0, 300, 1792, 5);
+			plataformaBosque = new CStage(0, 0, 353, 1792, 10);
+			bmpPlataformaBosque->MakeTransparent(bmpPlataformaBosque->GetPixel(0, 0));
+
 			bmpBala->MakeTransparent(bmpBala->GetPixel(0, 4));
 			oArregloBalas = new CArregloBalas();
 		}
@@ -117,17 +128,35 @@ namespace megatarzan {
 		default:
 			break;
 		}
+		if (e->KeyCode == Keys::A && nivelactual != 1) // cambio (temporal) de niveles con A S D
+			nivelactual = 1;
+		else if (e->KeyCode == Keys::S && nivelactual != 2)
+			nivelactual = 2;
+		else if (e->KeyCode == Keys::D && nivelactual != 3)
+			nivelactual = 3;
 	}
 	private: System::Void timer1_Tick(System::Object^  sender, System::EventArgs^  e) {
 		Graphics ^canvas = this->CreateGraphics();
 		BufferedGraphicsContext ^espacio = BufferedGraphicsManager::Current;
 		BufferedGraphics ^buffer = espacio->Allocate(canvas, this->ClientRectangle);
-
-		fondo1->mover(buffer, bmpFondo, jugador->getX(), 0, 0);
-		plataforma1->mover(buffer, bmpPlataforma, jugador->getX(), 0, 0);
-		jugador->mover(buffer, bmpJugador);
-		enemigo->mover(buffer, bmpEnemigo, oArregloBalas, plataforma1);
-		oArregloBalas->moverBalas(buffer, bmpBala);
+		switch(nivelactual)
+		{
+		case 1:
+			fondoMina->mover(buffer, bmpFondoMina, jugador->getX(), 0, 0);
+			plataformaMina->mover(buffer, bmpPlataformaMina, jugador->getX(), 0, 0);
+			jugador->mover(buffer, bmpJugador);
+			enemigo->mover(buffer, bmpEnemigo, oArregloBalas, plataformaMina);
+			oArregloBalas->moverBalas(buffer, bmpBala);
+			break;
+		case 2:
+			fondoBosque->mover(buffer, bmpFondoBosque, jugador->getX(), 0, 0);
+			plataformaBosque->mover(buffer, bmpPlataformaBosque, jugador->getX(), 0, 0);
+			jugador->mover(buffer, bmpJugador);
+			break;
+		case 3:
+			// TODO -- nivel subaquatico
+			break;
+		}
 		buffer->Render(canvas);
 		delete buffer;
 		delete espacio;

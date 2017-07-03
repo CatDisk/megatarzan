@@ -36,6 +36,9 @@
     <ClCompile Include="ArregloBalas.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Liana.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MyForm.h">
@@ -62,6 +65,9 @@
     <ClInclude Include="resource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Liana.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="megatarzan.rc">
@@ -72,16 +78,10 @@
     <Image Include="bala.bmp">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="collider_bosque.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
     <Image Include="enemigo.bmp">
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="fondo.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="fondo_bosque.bmp">
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="fondo_mina.bmp">
@@ -93,11 +93,19 @@
     <Image Include="plataforma.bmp">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="plataforma_bosque.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
     <Image Include="plataforma_mina.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="fondo_bosque.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="plataforma_bosque.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="MyForm.resx">
+      <Filter>Resource Files</Filter>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>
