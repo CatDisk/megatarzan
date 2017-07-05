@@ -168,10 +168,12 @@
     <Image Include="fondo.bmp" />
     <Image Include="fondo_bosque.bmp" />
     <Image Include="fondo_cielo.bmp" />
+    <Image Include="fondo_mar.bmp" />
     <Image Include="fondo_mina.bmp" />
     <Image Include="megaman.bmp" />
     <Image Include="plataforma.bmp" />
     <Image Include="plataforma_bosque.bmp" />
+    <Image Include="plataforma_mar.bmp" />
     <Image Include="plataforma_mina.bmp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

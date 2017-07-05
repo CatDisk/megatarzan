@@ -105,6 +105,12 @@
     <Image Include="fondo_cielo.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="fondo_mar.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="plataforma_mar.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="MyForm.resx">
