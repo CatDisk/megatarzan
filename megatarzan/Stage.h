@@ -13,7 +13,7 @@ public:
 	CStage(int x, int y, int alto, int ancho, int dx);
 	~CStage();
 	void dibujar(BufferedGraphics ^buffer, Bitmap ^bmp);
-	void mover(BufferedGraphics ^buffer, Bitmap ^bmp, int pos, int dxJugador, int otherStageX);
+	void mover(BufferedGraphics ^buffer, Bitmap ^bmp, int pos, int nivel, int otherStageX);
 	int getX();
 	int getDX();
 };

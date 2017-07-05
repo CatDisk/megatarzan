@@ -33,6 +33,10 @@ namespace megatarzan {
 		CStage *plataformaBosque;
 		CStage *fondoCielo1;
 		CStage *fondoCielo2;
+		CStage *fondoMar1;
+		CStage *fondoMar2;
+		CStage *plataformaMar1;
+		CStage *plataformaMar2;
 		CArregloBalas *oArregloBalas;
 
 		Bitmap ^bmpJugador = gcnew Bitmap("megaman.bmp");
@@ -43,6 +47,8 @@ namespace megatarzan {
 		Bitmap ^bmpPlataformaBosque = gcnew Bitmap("plataforma_bosque.bmp");
 		Bitmap ^bmpFondoBosque = gcnew Bitmap("fondo_bosque.bmp");
 		Bitmap ^bmpFondoCielo = gcnew Bitmap("fondo_cielo.bmp");
+		Bitmap ^bmpFondoMar = gcnew Bitmap("fondo_mar.bmp");
+		Bitmap ^bmpPlataformaMar = gcnew Bitmap("plataforma_mar.bmp");
 
 		MyForm(void)
 		{
@@ -64,6 +70,13 @@ namespace megatarzan {
 
 			fondoCielo1 = new CStage(0, 0, 353, 768, -20);
 			fondoCielo2 = new CStage(712, 0, 353, 768, -20);
+
+			fondoMar1 = new CStage(0, 0, 353, 1244, -5);
+			fondoMar2 = new CStage(2488, 0, 353, 1244, -5);
+
+			plataformaMar1 = new CStage(0, 0, 353, 1244, -10);
+			plataformaMar2 = new CStage(2488, 0, 353, 1244, -10);
+			bmpPlataformaMar->MakeTransparent(bmpPlataformaMar->GetPixel(0, 0));
 
 			bmpBalaEnemigo->MakeTransparent(bmpBalaEnemigo->GetPixel(0, 4));
 			oArregloBalas = new CArregloBalas();
@@ -162,8 +175,8 @@ namespace megatarzan {
 				jugador = new CCaminante(100, 30, 472);
 				nivelanterior = nivelactual;
 			}
-			fondoMina->mover(buffer, bmpFondoMina, jugador->getX(), 0, 0);
-			plataformaMina->mover(buffer, bmpPlataformaMina, jugador->getX(), 0, 0);
+			fondoMina->mover(buffer, bmpFondoMina, jugador->getX(), nivelactual, 0);
+			plataformaMina->mover(buffer, bmpPlataformaMina, jugador->getX(), nivelactual, 0);
 			jugador->mover(buffer, bmpJugador);
 			enemigo->mover(buffer, bmpEnemigo, oArregloBalas, plataformaMina);
 			oArregloBalas->moverBalas(buffer, bmpBalaEnemigo);
@@ -175,8 +188,8 @@ namespace megatarzan {
 				jugador = new CCaminante(100, 30, 450);
 				nivelanterior = nivelactual;
 			}
-			fondoBosque->mover(buffer, bmpFondoBosque, jugador->getX(), 0, 0);
-			plataformaBosque->mover(buffer, bmpPlataformaBosque, jugador->getX(), 0, 0);
+			fondoBosque->mover(buffer, bmpFondoBosque, jugador->getX(), nivelactual, 0);
+			plataformaBosque->mover(buffer, bmpPlataformaBosque, jugador->getX(), nivelactual, 0);
 			jugador->mover(buffer, bmpJugador);
 			oArregloBalas->moverBalas(buffer, bmpBalaEnemigo);
 			break;
@@ -187,8 +200,12 @@ namespace megatarzan {
 				jugador = new CNadador(100, 100);
 				nivelanterior = nivelactual;
 			}
+			fondoMar1->mover(buffer, bmpFondoMar, NULL, nivelactual, fondoMar2->getX());
+			fondoMar2->mover(buffer, bmpFondoMar, NULL, nivelactual, fondoMar1->getX());
 			jugador->mover(buffer, bmpJugador);
 			oArregloBalas->moverBalas(buffer, bmpBalaEnemigo);
+			plataformaMar1->mover(buffer, bmpPlataformaMar, NULL, nivelactual, plataformaMar2->getX());
+			plataformaMar2->mover(buffer, bmpPlataformaMar, NULL, nivelactual, plataformaMar1->getX());
 			break;
 		}
 		buffer->Render(canvas);
