@@ -31,7 +31,6 @@ void CArregloBalas::moverBalas(BufferedGraphics ^buffer, Bitmap ^bmp) {
 		if (vectorBalas[i].getX() < 0 || vectorBalas[i].getX() > 1583) // verifica colisiones con los limites de la pantalla
 		{
 			vectorBalas.erase(vectorBalas.cbegin() + i);
-			break;
 		}
 	}
 }

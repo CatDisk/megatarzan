@@ -106,11 +106,11 @@ void	CJugador::mover(BufferedGraphics ^buffer, Bitmap ^bmp) {
 
 	if (dy < 0) // animacion de salto para arriba
 	{
-		if (ultima == right)
+		if (direccion == right || dx > 0)
 		{
 			indiceY = 2;
 		}
-		if (ultima == left)
+		if (direccion == left || dx < 0)
 		{
 			indiceY = 3;
 		}
@@ -144,6 +144,7 @@ void CJugador::saltar() // funcion separada para que no interfiera con el movimi
 	{
 		piso = false;
 		dy = -40;
+		indiceX = 0;
 	}
 }
 void CJugador::disparar(CArregloBalas *oArregloBalas) {

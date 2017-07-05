@@ -122,12 +122,14 @@ namespace megatarzan {
 	private: System::Void presionarTecla(System::Object^  sender, System::Windows::Forms::KeyEventArgs^  e) {
 		switch (e->KeyCode)
 		{
+			if (nivelactual == 3) {
 		case Keys::Up:
 			jugador->saltar();
 			break;
 		case Keys::Down:
 			jugador->direccion = dirs::down;
 			break;
+			}
 		case Keys::Right:
 			jugador->direccion = dirs::right;
 			break;
@@ -145,6 +147,8 @@ namespace megatarzan {
 			nivelactual = 3;
 		if (e->KeyCode == Keys::Space)
 			jugador->disparar(oArregloBalas);
+		if (e->KeyCode == Keys::Up && nivelactual != 3)
+			jugador->saltar();
 	}
 	private: System::Void timer1_Tick(System::Object^  sender, System::EventArgs^  e) {
 		Graphics ^canvas = this->CreateGraphics();

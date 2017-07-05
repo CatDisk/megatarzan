@@ -3,7 +3,7 @@ CBala::CBala(int x, int y, int dir, tag personaje)
 {
 	this->x = x;
 	this->y = y;
-	dx *= dir;
+	this->dir = dir;
 	this->personaje = personaje;
 }
 CBala::~CBala()
@@ -12,6 +12,7 @@ CBala::~CBala()
 void CBala::mover(BufferedGraphics ^buffer, Bitmap ^bmp) {
 	if (personaje == enemigo)
 	{
+		dx = 15 * dir;
 		if (dx < 0)
 			indiceY = 0;
 		else
@@ -23,6 +24,7 @@ void CBala::mover(BufferedGraphics ^buffer, Bitmap ^bmp) {
 	}
 	else if (personaje == jugador)
 	{
+		dx = 25 * dir;
 		indiceX = 0;
 		indiceY = 2;
 	}
