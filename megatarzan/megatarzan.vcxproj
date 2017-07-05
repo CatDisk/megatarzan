@@ -137,7 +137,6 @@
     <ClCompile Include="Colision.cpp" />
     <ClCompile Include="Enemigo.cpp" />
     <ClCompile Include="Jugador.cpp" />
-    <ClCompile Include="Liana.cpp" />
     <ClCompile Include="MyForm.cpp" />
     <ClCompile Include="Stage.cpp" />
   </ItemGroup>
@@ -147,7 +146,6 @@
     <ClInclude Include="Colision.h" />
     <ClInclude Include="Enemigo.h" />
     <ClInclude Include="Jugador.h" />
-    <ClInclude Include="Liana.h" />
     <ClInclude Include="MyForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
