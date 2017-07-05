@@ -58,7 +58,7 @@ void CEnemigo::ataqueIZQ(CArregloBalas *oArreglo) // animacion de ataque y creac
 		}
 		i = 0;
 		if (indiceX == 3)
-			oArreglo->agregarElemento(x, y + 100, -1);
+			oArreglo->agregarElemento(x, y + 100, -1, enemigo);
 	}
 	else
 		i++;
@@ -108,7 +108,7 @@ void CEnemigo::ataqueDER(CArregloBalas *oArreglo) {
 		}
 		i = 0;
 		if (indiceX == 3)
-			oArreglo->agregarElemento(x + ancho * 2, y + 100, 1);
+			oArreglo->agregarElemento(x + ancho * 2, y + 100, 1, enemigo);
 	}
 	else
 		i++;

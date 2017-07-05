@@ -28,22 +28,28 @@ namespace megatarzan {
 		CStage *plataformaMina;
 		CStage *fondoBosque;
 		CStage *plataformaBosque;
+		CStage *fondoCielo1;
+		CStage *fondoCielo2;
 		CArregloBalas *oArregloBalas;
 
 		Bitmap ^bmpJugador = gcnew Bitmap("megaman.bmp");
 		Bitmap ^bmpFondoMina = gcnew Bitmap("fondo_mina.bmp");
 		Bitmap ^bmpPlataformaMina = gcnew Bitmap("plataforma_mina.bmp");
-		Bitmap ^bmpBala = gcnew Bitmap("bala.bmp");
+		Bitmap ^bmpBalaEnemigo = gcnew Bitmap("bala.bmp");
 		Bitmap ^bmpEnemigo = gcnew Bitmap("enemigo.bmp");
 		Bitmap ^bmpPlataformaBosque = gcnew Bitmap("plataforma_bosque.bmp");
 		Bitmap ^bmpFondoBosque = gcnew Bitmap("fondo_bosque.bmp");
+		Bitmap ^bmpFondoCielo = gcnew Bitmap("fondo_cielo.bmp");
 
 		MyForm(void)
 		{
 			InitializeComponent();
+
 			colision = new CColision();
+
 			jugador = new CJugador(100, 30);
 			bmpJugador->MakeTransparent(bmpJugador->GetPixel(0, 0));
+
 			enemigo = new CEnemigo(1000, 404);
 			bmpEnemigo->MakeTransparent(bmpEnemigo->GetPixel(0, 0));
 
@@ -55,7 +61,10 @@ namespace megatarzan {
 			plataformaBosque = new CStage(0, 0, 353, 1792, 10);
 			bmpPlataformaBosque->MakeTransparent(bmpPlataformaBosque->GetPixel(0, 0));
 
-			bmpBala->MakeTransparent(bmpBala->GetPixel(0, 4));
+			fondoCielo1 = new CStage(0, 0, 353, 768, -20);
+			fondoCielo2 = new CStage(712, 0, 353, 768, -20);
+
+			bmpBalaEnemigo->MakeTransparent(bmpBalaEnemigo->GetPixel(0, 4));
 			oArregloBalas = new CArregloBalas();
 		}
 
@@ -134,6 +143,8 @@ namespace megatarzan {
 			nivelactual = 2;
 		else if (e->KeyCode == Keys::D && nivelactual != 3)
 			nivelactual = 3;
+		if (e->KeyCode == Keys::Space)
+			jugador->disparar(oArregloBalas);
 	}
 	private: System::Void timer1_Tick(System::Object^  sender, System::EventArgs^  e) {
 		Graphics ^canvas = this->CreateGraphics();
@@ -146,7 +157,7 @@ namespace megatarzan {
 			plataformaMina->mover(buffer, bmpPlataformaMina, jugador->getX(), 0, 0);
 			jugador->mover(buffer, bmpJugador);
 			enemigo->mover(buffer, bmpEnemigo, oArregloBalas, plataformaMina);
-			oArregloBalas->moverBalas(buffer, bmpBala);
+			oArregloBalas->moverBalas(buffer, bmpBalaEnemigo);
 			break;
 		case 2:
 			fondoBosque->mover(buffer, bmpFondoBosque, jugador->getX(), 0, 0);
@@ -163,7 +174,7 @@ namespace megatarzan {
 		delete canvas;
 	}
 	private: System::Void soltarTecla(System::Object^  sender, System::Windows::Forms::KeyEventArgs^  e) {
-		if (e->KeyCode != Keys::Up)
+		if (e->KeyCode != Keys::Up && e->KeyCode != Keys::Space)
 			jugador->direccion = dirs::none;
 	}
 	};

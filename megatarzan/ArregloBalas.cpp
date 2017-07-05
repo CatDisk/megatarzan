@@ -11,36 +11,27 @@ CArregloBalas::~CArregloBalas()
 {
 }
 
-void CArregloBalas::agregarElemento(int x, int y, int dir) {
-	CBala **aux = new CBala *[cap + 1];
+void CArregloBalas::agregarElemento(int x, int y, int dir, tag personaje) {
+	vectorBalas.push_back(CBala(x, y, dir, personaje));
+	/*CBala **aux = new CBala *[cap + 1];
 	for (int i = 0; i < cap; i++)
 	{
 		aux[i] = arreglo[i];
 	}
-	aux[cap] = new CBala(x, y, dir);
+	aux[cap] = new CBala(x, y, dir, personaje);
 	delete[] arreglo;
 	arreglo = aux;
-	cap++;
+	cap++;*/
 }
 
 void CArregloBalas::moverBalas(BufferedGraphics ^buffer, Bitmap ^bmp) {
-	for (int i = 0; i < cap; i++)
+	for (unsigned int i = 0; i < vectorBalas.size(); i++)
 	{
-		arreglo[i]->mover(buffer, bmp);
-		if (arreglo[i]->getX() < 0 || arreglo[i]->getX() > 1583)
+		vectorBalas[i].mover(buffer, bmp);
+		if (vectorBalas[i].getX() < 0 || vectorBalas[i].getX() > 1583) // verifica colisiones con los limites de la pantalla
 		{
-			CBala **aux = new CBala *[cap - 1];
-			int a = 0;
-			for (int j = 0; j < cap - 1; j++)
-			{
-				aux[j] = arreglo[a];
-				a++;
-				if (j == i)
-					a++;
-			}
-			delete[] arreglo;
-			arreglo = aux;
-			cap--;
+			vectorBalas.erase(vectorBalas.cbegin() + i);
+			break;
 		}
 	}
 }

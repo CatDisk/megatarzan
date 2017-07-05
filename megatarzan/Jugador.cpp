@@ -12,6 +12,7 @@ CJugador::CJugador(int x, int y)
 	alto = 53;
 	indiceX = 0;
 	indiceY = 0;
+	
 }
 CJugador::~CJugador() {}
 void	CJugador::dibujar(BufferedGraphics ^buffer, Bitmap ^bmp) {
@@ -134,6 +135,8 @@ void	CJugador::mover(BufferedGraphics ^buffer, Bitmap ^bmp) {
 	{
 		piso = true;
 	}
+	if (contador > 0) // controla el spam de balas :v
+		contador--;
 }
 void CJugador::saltar() // funcion separada para que no interfiera con el movimiento en X
 {
@@ -142,6 +145,19 @@ void CJugador::saltar() // funcion separada para que no interfiera con el movimi
 		piso = false;
 		dy = -40;
 	}
+}
+void CJugador::disparar(CArregloBalas *oArregloBalas) {
+	int dir;
+	if (contador == 0) // controla el spam de balas :v
+	{
+		if (ultima == right) // direccion de las balas
+			dir = 1;
+		else
+			dir = -1;
+		oArregloBalas->agregarElemento(x, y, dir, jugador);
+		contador = 5;
+	}
+	
 }
 int CJugador::getX() { return x; }
 int CJugador::getY() { return y; }

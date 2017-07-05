@@ -1,4 +1,5 @@
 #pragma once
+#include "ArregloBalas.h"
 using namespace System::Drawing;
 enum dirs { none, up, down, left, right };
 class CJugador
@@ -13,6 +14,7 @@ private:
 	int indiceX;
 	int indiceY;
 	dirs ultima;
+	int contador = 0;
 	bool piso = false;
 public:
 	dirs direccion;
@@ -21,6 +23,7 @@ public:
 	void dibujar(BufferedGraphics ^buffer, Bitmap ^bmp);
 	void mover(BufferedGraphics ^buffer, Bitmap ^bmp);
 	void saltar();
+	void disparar(CArregloBalas *oArregloBalas);
 	int getX();
 	int getY();
 	int getAncho();
