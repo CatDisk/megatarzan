@@ -1,5 +1,7 @@
 #pragma once
 #include "Jugador.h"
+#include "Caminante.h"
+#include "Nadador.h"
 #include "Stage.h"
 class CColision
 {
@@ -9,6 +11,6 @@ private:
 public:
 	CColision();
 	~CColision();
-	void getColision(CJugador *nJugador, CStage *nPlataforma);
+	//void getColision(CJugador *nJugador, CStage *nPlataforma);
 };
 

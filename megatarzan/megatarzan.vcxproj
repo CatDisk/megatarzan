@@ -134,21 +134,25 @@
   <ItemGroup>
     <ClCompile Include="ArregloBalas.cpp" />
     <ClCompile Include="Bala.cpp" />
+    <ClCompile Include="Caminante.cpp" />
     <ClCompile Include="Colision.cpp" />
     <ClCompile Include="Enemigo.cpp" />
     <ClCompile Include="Jugador.cpp" />
     <ClCompile Include="MyForm.cpp" />
+    <ClCompile Include="Nadador.cpp" />
     <ClCompile Include="Stage.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ArregloBalas.h" />
     <ClInclude Include="Bala.h" />
+    <ClInclude Include="Caminante.h" />
     <ClInclude Include="Colision.h" />
     <ClInclude Include="Enemigo.h" />
     <ClInclude Include="Jugador.h" />
     <ClInclude Include="MyForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="Nadador.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Stage.h" />
   </ItemGroup>

@@ -11,7 +11,7 @@ CColision::~CColision()
 {
 }
 
-void CColision::getColision(CJugador *nJugador, CStage *nPlataforma)
+/*void CColision::getColision(CJugador *nJugador, CStage *nPlataforma)
 {
 	for (int i = 0; i < 7; i++)
 	{
@@ -29,4 +29,4 @@ void CColision::getColision(CJugador *nJugador, CStage *nPlataforma)
 			}
 		}
 	}
-}
+}*/

@@ -1,5 +1,7 @@
 #pragma once
 #include "Jugador.h"
+#include "Caminante.h"
+#include "Nadador.h"
 #include "Stage.h"
 #include "Colision.h"
 #include "Enemigo.h"
@@ -21,7 +23,8 @@ namespace megatarzan {
 	{
 	public:
 		int nivelactual = 1;
-		CColision *colision;
+		int nivelanterior = 1;
+
 		CJugador *jugador;
 		CEnemigo *enemigo;
 		CStage *fondoMina;
@@ -45,9 +48,7 @@ namespace megatarzan {
 		{
 			InitializeComponent();
 
-			colision = new CColision();
-
-			jugador = new CJugador(100, 30);
+			jugador = new CCaminante(0, 0, 472);
 			bmpJugador->MakeTransparent(bmpJugador->GetPixel(0, 0));
 
 			enemigo = new CEnemigo(1000, 404);
@@ -120,16 +121,17 @@ namespace megatarzan {
 		}
 #pragma endregion
 	private: System::Void presionarTecla(System::Object^  sender, System::Windows::Forms::KeyEventArgs^  e) {
+		if (e->KeyCode == Keys::Space)
+			jugador->disparar(oArregloBalas);
 		switch (e->KeyCode)
 		{
-			if (nivelactual == 3) {
 		case Keys::Up:
-			jugador->saltar();
+				jugador->direccion = dirs::up;
+				jugador->saltar();
 			break;
 		case Keys::Down:
 			jugador->direccion = dirs::down;
 			break;
-			}
 		case Keys::Right:
 			jugador->direccion = dirs::right;
 			break;
@@ -145,10 +147,7 @@ namespace megatarzan {
 			nivelactual = 2;
 		else if (e->KeyCode == Keys::D && nivelactual != 3)
 			nivelactual = 3;
-		if (e->KeyCode == Keys::Space)
-			jugador->disparar(oArregloBalas);
-		if (e->KeyCode == Keys::Up && nivelactual != 3)
-			jugador->saltar();
+
 	}
 	private: System::Void timer1_Tick(System::Object^  sender, System::EventArgs^  e) {
 		Graphics ^canvas = this->CreateGraphics();
@@ -157,6 +156,12 @@ namespace megatarzan {
 		switch(nivelactual)
 		{
 		case 1:
+			if (nivelanterior != nivelactual)
+			{
+				delete jugador;
+				jugador = new CCaminante(100, 30, 472);
+				nivelanterior = nivelactual;
+			}
 			fondoMina->mover(buffer, bmpFondoMina, jugador->getX(), 0, 0);
 			plataformaMina->mover(buffer, bmpPlataformaMina, jugador->getX(), 0, 0);
 			jugador->mover(buffer, bmpJugador);
@@ -164,12 +169,26 @@ namespace megatarzan {
 			oArregloBalas->moverBalas(buffer, bmpBalaEnemigo);
 			break;
 		case 2:
+			if (nivelanterior != nivelactual)
+			{
+				delete jugador;
+				jugador = new CCaminante(100, 30, 450);
+				nivelanterior = nivelactual;
+			}
 			fondoBosque->mover(buffer, bmpFondoBosque, jugador->getX(), 0, 0);
 			plataformaBosque->mover(buffer, bmpPlataformaBosque, jugador->getX(), 0, 0);
 			jugador->mover(buffer, bmpJugador);
+			oArregloBalas->moverBalas(buffer, bmpBalaEnemigo);
 			break;
 		case 3:
-			// TODO -- nivel subaquatico
+			if (nivelanterior != nivelactual)
+			{
+				delete jugador;
+				jugador = new CNadador(100, 100);
+				nivelanterior = nivelactual;
+			}
+			jugador->mover(buffer, bmpJugador);
+			oArregloBalas->moverBalas(buffer, bmpBalaEnemigo);
 			break;
 		}
 		buffer->Render(canvas);
@@ -179,6 +198,8 @@ namespace megatarzan {
 	}
 	private: System::Void soltarTecla(System::Object^  sender, System::Windows::Forms::KeyEventArgs^  e) {
 		if (e->KeyCode != Keys::Up && e->KeyCode != Keys::Space)
+			jugador->direccion = dirs::none;
+		if (nivelactual == 3 && e->KeyCode == Keys::Up)
 			jugador->direccion = dirs::none;
 	}
 	};

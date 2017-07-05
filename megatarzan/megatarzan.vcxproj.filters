@@ -36,6 +36,12 @@
     <ClCompile Include="ArregloBalas.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Nadador.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Caminante.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MyForm.h">
@@ -60,6 +66,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Nadador.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Caminante.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
