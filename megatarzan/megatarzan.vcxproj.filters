@@ -42,6 +42,15 @@
     <ClCompile Include="Caminante.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Robot.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Pez.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ArregloPez.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MyForm.h">
@@ -72,6 +81,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Caminante.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Robot.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Pez.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ArregloPez.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -115,6 +133,9 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="plataforma_mar.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="enemigo_pez.bmp">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

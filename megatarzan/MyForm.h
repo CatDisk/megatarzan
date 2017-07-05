@@ -5,8 +5,10 @@
 #include "Stage.h"
 #include "Colision.h"
 #include "Enemigo.h"
+#include "Robot.h"
 #include "Bala.h"
 #include "ArregloBalas.h"
+#include "ArregloPez.h"
 namespace megatarzan {
 
 	using namespace System;
@@ -24,9 +26,13 @@ namespace megatarzan {
 	public:
 		int nivelactual = 1;
 		int nivelanterior = 1;
+		int ola = 1;
+		int timerOla = 0;
+		int timerSpawn = 0;
+		int olaTimeout = 0;
 
 		CJugador *jugador;
-		CEnemigo *enemigo;
+		CRobot *enemigo;
 		CStage *fondoMina;
 		CStage *plataformaMina;
 		CStage *fondoBosque;
@@ -38,6 +44,7 @@ namespace megatarzan {
 		CStage *plataformaMar1;
 		CStage *plataformaMar2;
 		CArregloBalas *oArregloBalas;
+		CArregloPez *oArregloPez;
 
 		Bitmap ^bmpJugador = gcnew Bitmap("megaman.bmp");
 		Bitmap ^bmpFondoMina = gcnew Bitmap("fondo_mina.bmp");
@@ -49,6 +56,7 @@ namespace megatarzan {
 		Bitmap ^bmpFondoCielo = gcnew Bitmap("fondo_cielo.bmp");
 		Bitmap ^bmpFondoMar = gcnew Bitmap("fondo_mar.bmp");
 		Bitmap ^bmpPlataformaMar = gcnew Bitmap("plataforma_mar.bmp");
+		Bitmap ^bmpPez = gcnew Bitmap("enemigo_pez.bmp");
 
 		MyForm(void)
 		{
@@ -57,7 +65,7 @@ namespace megatarzan {
 			jugador = new CCaminante(0, 0, 472);
 			bmpJugador->MakeTransparent(bmpJugador->GetPixel(0, 0));
 
-			enemigo = new CEnemigo(1000, 404);
+			enemigo = new CRobot(1000, 404);
 			bmpEnemigo->MakeTransparent(bmpEnemigo->GetPixel(0, 0));
 
 			fondoMina = new CStage(0, 250, 256, 1792, 5);
@@ -80,6 +88,9 @@ namespace megatarzan {
 
 			bmpBalaEnemigo->MakeTransparent(bmpBalaEnemigo->GetPixel(0, 4));
 			oArregloBalas = new CArregloBalas();
+
+			bmpPez->MakeTransparent(bmpPez->GetPixel(0, 0));
+			oArregloPez = new CArregloPez();
 		}
 
 	protected:
@@ -199,10 +210,34 @@ namespace megatarzan {
 				delete jugador;
 				jugador = new CNadador(100, 100);
 				nivelanterior = nivelactual;
+				timerOla = 0;
+				timerSpawn = 0;
+				ola = 1;
+				olaTimeout = 0;
 			}
 			fondoMar1->mover(buffer, bmpFondoMar, NULL, nivelactual, fondoMar2->getX());
 			fondoMar2->mover(buffer, bmpFondoMar, NULL, nivelactual, fondoMar1->getX());
 			jugador->mover(buffer, bmpJugador);
+
+			if (timerSpawn == 10)
+			{
+				oArregloPez->agregarElemento(ola);
+				timerSpawn = 0;
+			}
+			else
+				timerSpawn++;
+
+			if (timerOla == 100)
+			{
+					if (ola < 3)
+						ola++;
+					else
+						ola = 1;
+					timerOla = 0;
+			}
+			else
+				timerOla++;
+			oArregloPez->mover(buffer, bmpPez);
 			oArregloBalas->moverBalas(buffer, bmpBalaEnemigo);
 			plataformaMar1->mover(buffer, bmpPlataformaMar, NULL, nivelactual, plataformaMar2->getX());
 			plataformaMar2->mover(buffer, bmpPlataformaMar, NULL, nivelactual, plataformaMar1->getX());

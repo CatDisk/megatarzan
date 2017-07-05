@@ -5,7 +5,7 @@ using namespace System::Drawing;
 using namespace std;
 class CEnemigo
 {
-private:
+protected:
 	int i = 0;
 	int contador = 0;
 	int dx = 0;
@@ -20,13 +20,6 @@ public:
 	int y;
 	CEnemigo(int x, int y);
 	~CEnemigo();
-	void mover(BufferedGraphics ^buffer, Bitmap ^bmp, CArregloBalas *oArreglo, CStage *oPlataforma);
-	void idleIZQ();
-	void saltarIZQ();
-	void ataqueIZQ(CArregloBalas *oArreglo);
-	void idleDER();
-	void saltarDER();
-	void ataqueDER(CArregloBalas *oArreglo);
-	int getCont();
+	virtual void mover(BufferedGraphics ^buffer, Bitmap ^bmp, CArregloBalas *oArreglo, CStage *oPlataforma)abstract;
 };
 

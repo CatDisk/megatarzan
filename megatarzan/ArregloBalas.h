@@ -9,8 +9,6 @@ class CArregloBalas
 {
 private:
 	vector<CBala> vectorBalas;
-	CBala **arreglo;
-	int cap;
 public:
 	CArregloBalas();
 	~CArregloBalas();

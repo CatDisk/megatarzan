@@ -133,6 +133,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ArregloBalas.cpp" />
+    <ClCompile Include="ArregloPez.cpp" />
     <ClCompile Include="Bala.cpp" />
     <ClCompile Include="Caminante.cpp" />
     <ClCompile Include="Colision.cpp" />
@@ -140,10 +141,13 @@
     <ClCompile Include="Jugador.cpp" />
     <ClCompile Include="MyForm.cpp" />
     <ClCompile Include="Nadador.cpp" />
+    <ClCompile Include="Pez.cpp" />
+    <ClCompile Include="Robot.cpp" />
     <ClCompile Include="Stage.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ArregloBalas.h" />
+    <ClInclude Include="ArregloPez.h" />
     <ClInclude Include="Bala.h" />
     <ClInclude Include="Caminante.h" />
     <ClInclude Include="Colision.h" />
@@ -153,7 +157,9 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="Nadador.h" />
+    <ClInclude Include="Pez.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="Robot.h" />
     <ClInclude Include="Stage.h" />
   </ItemGroup>
   <ItemGroup>
@@ -167,6 +173,7 @@
   <ItemGroup>
     <Image Include="bala.bmp" />
     <Image Include="enemigo.bmp" />
+    <Image Include="enemigo_pez.bmp" />
     <Image Include="fondo.bmp" />
     <Image Include="fondo_bosque.bmp" />
     <Image Include="fondo_cielo.bmp" />
